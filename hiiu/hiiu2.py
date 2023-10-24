@@ -91,3 +91,5 @@ result_df.to_csv('news_data3.csv', index=False, encoding='utf-8-sig')
 import os
 current_directory = os.getcwd()
 print("Current Directory:", current_directory)
+
+#화이팅!
