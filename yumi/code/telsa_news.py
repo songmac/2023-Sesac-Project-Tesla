@@ -105,15 +105,15 @@ def get_news_list(keyword, toDate, fromDate) :
           if len(item.select("div.info_group a")) == 2 :
             news.append(get_news(item.select("div.info_group a")[1]['href']))
         page += 1
-        
     return pd.DataFrame(news, columns=['title','date','media','content'])
     #return news
 
+#원하는 키워드, 검색 날짜
 keyword = "테슬라"
-toDate = "2023.01.01"
-fromDate = "2023.01.15"
+toDate = "2023.03.01"
+fromDate = "2023.03.01"
 
 rows = get_news_list(keyword, toDate, fromDate)
 
-#csv로 파일 저장
-rows.to_csv('tesla0115.csv', encoding='utf-8-sig')
+#data 폴더에 csv로 파일 저장
+rows.to_csv('D:/Team_SeSAC/yumi/data/tesla0301.csv', encoding='utf-8-sig')
