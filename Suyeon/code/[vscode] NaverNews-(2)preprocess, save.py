@@ -7,7 +7,7 @@ print("Current Directory:", current_directory)
 import pandas as pd
 
 # csv 저장 경로 상세히 불러오기
-csv_file_path = os.path.join(current_directory, 'news_data_Jan2022.csv')
+csv_file_path = os.path.join(current_directory, '[2022-Apr]news_data.csv')
 df = pd.read_csv(csv_file_path)
 
 df.drop(['media', 'url'], axis=1, inplace = True)
@@ -56,4 +56,4 @@ df['content'] = df['content'].map(clean_byline)
 
 
 # 전처리한 데이터 csv 파일로 저장
-df['content'].to_csv('news_data_Jan2022_preprocessing.csv', index=False, encoding='utf-8-sig')
+df['content'].to_csv('[2022-Apr]news_data_preprocessing.csv', index=False, encoding='utf-8-sig')

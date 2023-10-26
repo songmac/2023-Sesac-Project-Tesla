@@ -59,6 +59,9 @@ def news_list(keyword, startdate, enddate):
                     li.append(news(item.select("div.info_group a")[1]['href']))
             page = page + 1
     return pd.DataFrame(li, columns=['title', 'date', 'media', 'content', 'url'])
-result_df = news_list('테슬라', '2022.01.01', '2022.01.31')
 
-result_df.to_csv('news_data_Jan2022.csv', index=False, encoding='utf-8-sig')
+# 크롤링할 데이터 (키워드, 시작날짜, 종료날짜)
+result_df = news_list('테슬라', '2022.04.01', '2022.04.30')
+
+# 크롤링 데이터 CSV파일로 저장
+result_df.to_csv('[2022-Apr]news_data.csv', index=False, encoding='utf-8-sig')
