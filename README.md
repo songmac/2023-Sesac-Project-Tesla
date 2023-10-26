@@ -13,6 +13,7 @@
       
   * data📁 : [YYYY-Month] name.csv
     * ex. [2022-Feb] news_data.csv
+    * ex. [2022-Feb] news_data_preprocessing.csv
 
 ## 커밋 규칙
   * code📁 : new / update / delete
