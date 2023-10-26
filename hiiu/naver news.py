@@ -85,7 +85,6 @@ result_df
 result_df.to_csv('news_data3.csv', index=False, encoding='utf-8-sig')
 
 
-
 #csv파일 저장위치
 
 import os
