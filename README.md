@@ -3,7 +3,7 @@
 
 ## 파일명 규칙
 #### ❗ data 파일(csv)은 1개월씩 크롤링
-#### ❗ []와 영문 작성필
+#### ❗ [ ]와 영문 작성필
 #### ❗ 필요시, 공백은 문자는 underscore(_), 숫자는 hyphen(-) 으로 연결
 
   * code📁 : [platform] (number) stage.py
