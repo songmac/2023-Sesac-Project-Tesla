@@ -2,6 +2,7 @@
 
 ## 커밋 규칙
 #### ❗ *공백은 문자는 underscore(_), 숫자는 hyphen(-) 으로 연결*
+#### ❗ *영문 필수*
 
   * code폴더 : new / update / delete
   * data폴더 : save / update / delete
@@ -9,6 +10,7 @@
 
 ## 파일명 규칙
 #### ❗ *data 파일(csv)은 1개월씩 크롤링*
+#### ❗ *영문 필수*
 
   * code폴더 : [vscode or colab] (stage number) description of what, why
     * ex. [vscode] (1)data collection and save as csv file
