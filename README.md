@@ -10,8 +10,10 @@
 ## 파일명 규칙
 #### ❗ *data 파일(csv)은 1개월씩 크롤링*
 
-  * code폴더 : [vscode or colab] (stage number) description of what, why     (ex. [vscode] (1)data collection and save as csv file)
-  * data폴더 : [YYYY-Month] name     (ex. [2022-Feb] news_data)
+  * code폴더 : [vscode or colab] (stage number) description of what, why
+    * ex. [vscode] (1)data collection and save as csv file
+  * data폴더 : [YYYY-Month] name
+    * ex. [2022-Feb] news_data
 
 
 ## 일정 및 역할 분담
