@@ -1,4 +1,10 @@
-#네이버뉴스 1개 크롤링
+#csv파일 저장위치
+import os
+current_directory = os.getcwd()
+print("Current Directory:", current_directory)
+
+
+# 모듈 임포트 선언
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -6,11 +12,10 @@ import re, unicodedata
 from string import whitespace
 
 
+# 네이버뉴스 1개 크롤링
 def news(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    media_element = soup.select_one('a.media_end_head_top_logo img')
-    media = media_element.get('title') if media_element else None
     title_element = soup.select_one('h2#title_area')
     title = title_element.text if title_element else None
     date_element = soup.select_one('span.media_end_head_info_datestamp_time')
@@ -20,13 +25,11 @@ def news(url):
     return {
         'title': title,
         'date': date,
-        'media': media,
-        'content': content,
-        'url': url
+        'content': content
     }
 
 
-#네이버뉴스 페이지+원하는 날짜 크롤링
+# 네이버뉴스 페이지+원하는 날짜 크롤링
 def news_list(keyword, startdate, enddate):
     li = []
     h = {'User-Agent': '...',
@@ -49,9 +52,11 @@ def news_list(keyword, startdate, enddate):
                 if len(item.select("div.info_group a")) == 2:
                     li.append(news(item.select("div.info_group a")[1]['href']))
             page = page + 1
-    return pd.DataFrame(li, columns=['title', 'date', 'media', 'content', 'url'])
+    return pd.DataFrame(li, columns=['title', 'date', 'content'])
 
 
+
+# 바이라인 제거
 def clean_byline(text):
     # 바이라인
     pattern_email = re.compile(r'[-_0-9a-z]+@[-_0-9a-z]+(?:\.[0-9a-z]+)+', flags=re.IGNORECASE)
@@ -68,20 +73,16 @@ def clean_byline(text):
     return result
 
 
-
 # 크롤링할 데이터 (키워드, 시작날짜, 종료날짜)
-result_df = news_list('테슬라', '2022.05.01', '2022.05.31')
-print(result_df)
+result_df = news_list('테슬라', '2022.07.01', '2022.07.31')
 
 # 크롤링 데이터, 데이터 프레임에 저장 및 필요없는 column 삭제
 df = pd.DataFrame(result_df)
-df.drop(['media', 'url'], axis=1, inplace = True)
 df['content'] = df['content'].fillna('').astype(str).map(clean_byline)
 
 # 유니코드 문자 전처리 및 정규 표현식 사용
 pattern_whitespace = re.compile(f'[{whitespace}]+')
 df['content'] = df['content'].str.replace(pattern_whitespace, ' ').map(lambda x: unicodedata.normalize('NFC', x)).str.strip()
 
-
 # 전처리한 데이터 csv 파일로 저장
-df['content'].to_csv('[2022-May]news_data_content.csv', index=False, encoding='utf-8-sig')
+df.to_csv('[2022-Jul]news_data_cleansing.csv', index=False, encoding='utf-8-sig')
