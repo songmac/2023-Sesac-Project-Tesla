@@ -24,15 +24,13 @@ def clean_byline(text):
     # byline
     pattern_email = re.compile(r'[-_0-9a-z]+@[-_0-9a-z]+(?:\.[0-9a-z]+)+', flags=re.IGNORECASE)
     pattern_url = re.compile(r'(?:https?:\/\/)?[-_0-9a-z]+(?:\.[-_0-9a-z]+)+', flags=re.IGNORECASE)
-    pattern_others = re.compile(r'\.([^\.]*(?:기자|특파원|교수|작가|대표|논설|고문|주필|부문장|팀장|장관|원장|연구원|이사장|위원|실장|차장|부장|에세이|화백|사설|소장|단장|과장|기획자|큐레이터|저작권|평론가|©|©|ⓒ|\@|\/|=|▶|무단|전재|재배포|금지|
-|)[^\.]*)$')
+    pattern_others = re.compile(r'\.([^\.]*(?:기자|특파원|교수|작가|대표|논설|고문|주필|부문장|팀장|장관|원장|연구원|이사장|위원|실장|차장|부장|에세이|화백|사설|소장|단장|과장|기획자|큐레이터|저작권|평론가|©|©|ⓒ|\@|\/|=|▶|무단|전재|재배포|금지||)[^\.]*)$')
     result = pattern_email.sub('', text)
     result = pattern_url.sub('', result)
     result = pattern_others.sub('.', result)
 
     # 본문 시작 전 꺽쇠로 쌓인 바이라인 제거
-    pattern_bracket = re.compile(r'^((?:
-)|(?:【.+】)|(?:<.+>)|(?:◆.+◆)\s)')
+    pattern_bracket = re.compile(r'^((?:)|(?:【.+】)|(?:<.+>)|(?:◆.+◆)\s)')
     result = pattern_bracket.sub('', result).strip()
 
     return result
