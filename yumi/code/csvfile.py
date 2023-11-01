@@ -67,7 +67,7 @@ def twit_merge_csv(dirpath,savepath,fileName):
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
     
 #불려온 cvs 파일을 dataframe으로 리턴   
-def call_csv(dirpath, fileName):
+def read_csv(dirpath, fileName):
     merged_file = dirpath + fileName + '.csv'
     df = pd.read_csv(merged_file)
     return df
@@ -75,4 +75,4 @@ def call_csv(dirpath, fileName):
 #csv 파일 저장
 def save_file(df, dirpath, fileName) :
     fileFormat = '.csv'
-    df.to_csv(dirpath + fileName + fileFormat , encoding='utf-8-sig')
+    df.to_csv(dirpath + fileName + fileFormat ,index=False, encoding='utf-8-sig')
