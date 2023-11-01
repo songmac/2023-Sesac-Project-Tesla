@@ -14,9 +14,7 @@ df = csvfile.call_csv(filepath, fileName)
 df = df.dropna(axis=0)
 #print(f'결측치 제거 후 dataframe shape : ', df.shape)
 
-print("")
 print("-------------------------불필요한 정보 제거--------------------------------")
-print("")
 
 #media(신문매체이름), Unnamed 열 제거
 df.drop(['media','Unnamed: 0'], axis=1, inplace = True)
