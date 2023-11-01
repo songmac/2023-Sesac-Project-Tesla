@@ -45,6 +45,53 @@ def clean_byline(text):
     result = pattern_bracket.sub(' ', result).strip()
     return result
 
+#트위터 이모티콘 제거
+def remove_emoji(text):
+    # 이모티콘 패턴 정의
+    emoji_pattern = re.compile("["
+                               u"\U0001F600-\U0001F64F"  # 스마일리 이모티콘
+                               u"\U0001F300-\U0001F5FF"  # 기호 이모티콘
+                               u"\U0001F680-\U0001F6FF"  # 트랜스포트 및 심볼 이모티콘
+                               u"\U0001F700-\U0001F77F"  # 알파벳 보완 및 심볼 이모티콘
+                               u"\U0001F780-\U0001F7FF"  # 기호 보충 이모티콘
+                               u"\U0001F800-\U0001F8FF"  # 기호 보충 이모티콘
+                               u"\U0001F900-\U0001F9FF"  # 기호 보충 이모티콘
+                               u"\U0001FA00-\U0001FA6F"  # 게임 이모티콘
+                               u"\U0001FA70-\U0001FAFF"  # 게임 이모티콘
+                               u"\U0001F004-\U0001F0CF"  # 추가 기호 이모티콘
+                               u"\U0001F004-\U0001F0CF"  # 추가 기호 이모티콘
+                               u"\U00002702-\U000027B0"  # 도서 및 표지 이모티콘
+                               u"\U000024C2-\U0001F251" 
+                               u"\U0001f926-\U0001f937"
+                               u"\U00010000-\U0010ffff"
+                               u"\u200d"
+                               u"\u2640-\u2642"
+                               u"\u2600-\u2B55"
+                               u"\u23cf"
+                               u"\u23e9"
+                               u"\u231a"
+                               u"\u3030"
+                               u"\ufe0f"
+                               "]+", flags=re.UNICODE)
+    # 이모티콘 제거
+    text_without_emoji = emoji_pattern.sub(r'', text)
+    return text_without_emoji
+
+#트위터 처리
+def clean_tweet(tweet):
+    # URL 제거
+    tweet = re.sub(r"http\S+|www\S+|https\S+", '', tweet, flags=re.MULTILINE)
+    # 해시태그(#)와 멘션(@) 제거
+    tweet = re.sub(r'\B#\w+', '', tweet)
+    tweet = re.sub(r'\B@\w+', '', tweet)
+    # 소문자 변환
+    tweet = tweet.lower()
+    #이모티콘 제거
+    #tweet = remove_emoji(tweet)
+    #영어만 추출
+    tweet = re.sub(r'[^a-zA-Z]', ' ', tweet)
+    return tweet
+
 #불용어 처리
 def remove_korean_stopwords(nouns_list):
     return [word for word in nouns_list if word not in stop_words]
