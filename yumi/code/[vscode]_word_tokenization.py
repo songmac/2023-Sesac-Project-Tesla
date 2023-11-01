@@ -12,11 +12,11 @@ def word_counter(wordArr):
     return most_commos_words
 
 #mecab 실행
-existing_path = os.environ.get('PATH', '')
+#existing_path = os.environ.get('PATH', '')
 # 추가할 디렉토리를 설정
-new_path = r'C:\mecab\bin'
+#new_path = r'C:\mecab\bin'
 # PATH 환경변수에 새 디렉토리를 추가
-os.environ['PATH'] = new_path + os.pathsep + existing_path
+#os.environ['PATH'] = new_path + os.pathsep + existing_path
 # 변경된 PATH 값을 확인
 #print(os.environ['PATH'])
 
@@ -64,7 +64,12 @@ for token in clean_words:
   most_common_tag += token
 print(Counter(most_common_tag).most_common(30))
 
-#
+#불용어 제거한 파일 저장
+clean_fileName = 'cleanWords'
+csvfile.save_file(words_df, filepath, clean_fileName)
+
+
+
 
 
 
