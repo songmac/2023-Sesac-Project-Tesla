@@ -16,7 +16,7 @@ from gensim.models import LdaModel, TfidfModel, CoherenceModel
 
 
 # 크롤링 & 클렌징한 csv 파일 불러오기
-df = pd.read_csv(r'C:\Users\User\project\SESAC\Team-SeSAC\Team_SeSAC\Suyeon\data\cleansing\[2022-Jan]news_data_cleansing.csv')
+df = pd.read_csv(r'C:\Users\User\Documents\Tesla_data\news_data_suyeon\2022_01_news_data.csv')
 
 # 형태소 분석기 초기화
 okt = Okt()
