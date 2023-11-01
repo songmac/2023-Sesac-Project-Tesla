@@ -1,9 +1,12 @@
 from gensim.corpora.dictionary import Dictionary
 from gensim.models import LdaModel, TfidfModel
-from gensim.models import ldamulticore
+#from gensim.models import ldamulticore
+from gensim.models import LdaMulticore
+import multiprocessing
 import pandas as pd
 import numpy as np
 import csvfile, modeling
+import time
 
 print("---------------------테슬라 주식 데이터 Dataframe ------------------------")
 
@@ -74,9 +77,8 @@ news_daily_cnt = data_df['기사갯수']
 print('날짜별 기사개수 : {}, 날짜별 주식 거래양 수 : {}'.format(news_daily_cnt, stock_daily_volume))
 
 print("---------------------라쏘 회귀 ------------------------")
-
 # 라쏘 회귀  : 
-# 선형 회귀는 비용함수인 mse를 최소하하는 방향으로 머신러닝 모델이 학습을 진행
+# 선형 회귀으로 비용함수인 mse를 최소하하는 방향으로 머신러닝 모델이 학습을 진행
 # TF-IDF는 단어의 빈도수(TF)와 단어가 들어있는 문서 수의 반비례 하는 수(IDF)를 곱한값
 # 기사 수(news_cnt) : X, 주식거래량(stock_volume) : y
 # 각 데이터를 StandardScaler/MinMaxScaler로 표준화하여 모델링
@@ -99,7 +101,7 @@ dic = Dictionary()
 #clean_words = words_df['nouns_content']
 clean_words = words_df['nouns_content'].apply(lambda x: x.split())
 id2word = Dictionary(clean_words)
-print(id2word)
+#print(id2word)
 
 corpus_TDM = []
 for doc in clean_words:
@@ -112,14 +114,33 @@ tfidf = TfidfModel(corpus_TDM)
 corpus_TFIDF = tfidf[corpus_TDM]
 
 #LDA 모델링
-n = 30 #토픽의 개수
-lda = ldamulticore.LdaMulticore(corpus=corpus_TFIDF,
-                                id2word=id2word,
-                                num_topics=n,
-                                random_state=100,
-                                passes=15,
-                                workers=4)
+if __name__ == '__main__':
+  start_time = time.time()
+  n = 30 #토픽의 개수
+  #worker(프로세스 수),토픽수.passes(매개변수) 수를 조정하여 
+  #속도를 높일 수 있음
+  lda = LdaMulticore(corpus=corpus_TFIDF,
+                    id2word=id2word,
+                    num_topics=n,
+                    random_state=100,
+                    passes=15,
+                    workers=10)
 
-for t in lda.print_topics():
-  print(t[0],":",t[1])
+  for t in lda.print_topics():
+    print(t[0],":",t[1])
 
+  #로그 혼란도(0에 가까울수록 성능이 높음)
+  lda.log_perplexity(corpus_TFIDF)
+
+  #다양도(1에 가까울 수록 성능이 높음)
+  topn = 25
+  top_words = set()
+
+  for topic in range(lda.num_topics):
+      for word, prob in lda.show_topic(topic, topn=topn):
+          top_words.add(word)
+  len(top_words) / (lda.num_topics * topn)
+  
+  end_time = time.time()
+  execution_time = end_time - start_time
+  print(f"실행 시간: {execution_time} 초")
