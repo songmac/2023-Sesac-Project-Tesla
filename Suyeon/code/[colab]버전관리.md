@@ -1,4 +1,4 @@
-# [colab, vscode] Merge code 버전 관리
+# [colab] code 버전 관리
 
 ### V1.0 : 각 실행 창 마다 결과 확인
 - 수집정보 :  title, date, media, content, url
@@ -8,15 +8,20 @@
 - 수집정보 :  title, date, content (media, url 삭제) 
 - cvs 파일명 : [2022-Jan]news_data_preprocessing -> [2022-Jan]news_data_cleansing으로 수정
 
------------------------------------------------------------------ Data Collecting & Cleansing
+----------------------------------------------------------------- Collecting & Cleansing
 
-### V1.5 : 토큰화, LDA 분석 정리
-- colab은 완료함
-- vscode는 konlpy 설치 이슈 발생하여 해결중
+### V1.5 : 토큰화, LDA로 토픽모델링 구현
 
-### V1.8 : LDA, LASSO, K-Fold 코드 rough 하게 작성하여 완성본은 아님
+----------------------------------------------------------------- Tokenization & LDA modeling 
 
------------------------------------------------------------------ Data Preprocessing & Analysis
+
+### V1.6 : OKt -> mecab 으로 토큰화 방식 전환 (진행중)
+
+
+----------------------------------------------------------------- K-Fold & LASSO regression
+
+### V1.8 : LASSO, K-Fold 코드 rough 하게 작성 (팀원들이 각각 디벨롭 진행중)
+
 
 ### 구현중인 내용
 - colab → vscode로 옮기기

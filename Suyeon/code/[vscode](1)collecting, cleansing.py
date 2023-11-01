@@ -11,8 +11,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import re, unicodedata
 from string import whitespace
-# from konlpy.tag import Okt
-# from gensim import corpora
 
 
 
@@ -90,5 +88,3 @@ df['content'] = df['content'].str.replace(pattern_whitespace, ' ').map(lambda x:
 
 # 전처리한 데이터 csv 파일로 저장
 df.to_csv('[2022-Dec]news_data_cleansing.csv', index=False, encoding='utf-8-sig')
-# 텍스트 데이터를 리스트로 변환
-documents = df['content'].tolist()
