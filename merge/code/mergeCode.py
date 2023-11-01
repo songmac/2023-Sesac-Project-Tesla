@@ -4,8 +4,8 @@ import os
 #cvs file처리하는 모듈
 
 #2020 ~ 2023년으로 시작하는 csv 파일 전부 merge
-#이 코드는 merge할 파일과 merge된 저장된 파일이 동일한 폴더 위치에 저장됨
-#dirpath : merge할 파일 위치와 저장할 위치 savefileName: 저장할 파일 이름
+#이 코드는 년도별 merge할 파일과 merge된 저장된 파일이 동일한 폴더 위치에 저장됨
+#dirpath : 년도별 merge할 파일 위치와 저장할 위치 savefileName: 저장할 파일 이름
 def merge_csv(dirpath, savefileName):
     
     file_list = os.listdir(dirpath)
