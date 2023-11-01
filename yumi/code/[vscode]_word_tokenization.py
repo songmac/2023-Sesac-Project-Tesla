@@ -62,5 +62,10 @@ print('불용어 제거 후 : ', clean_words[:20])
 most_common_tag = []
 for token in clean_words:
   most_common_tag += token
-Counter(most_common_tag).most_common(30)
+print(Counter(most_common_tag).most_common(30))
+
+#
+
+
+
 

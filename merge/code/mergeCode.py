@@ -24,25 +24,6 @@ def merge_csv(dirpath, savefileName):
             
     #동일한 폴더에 병합한 csv 파일 저장
     merged_df.to_csv(dirpath + savefileName + ".csv", index=False, encoding='utf-8-sig')
-    
-#불려온 cvs 파일을 dataframe으로 리턴   
-#dirpath : cvs파일가 있는 위치  fileName : 불려올 파일 이름
-def call_csv(dirpath, fileName):
-    merged_file = dirpath + fileName + '.csv'
-    df = pd.read_csv(merged_file)
-    return df
-
-#csv 파일 저장
-#df: 저장할 dataframe dirpath : 저장할 위치 fileName : 저장할 파일이름
-def save_file(df, dirpath, savefileName) :
-    fileFormat = '.csv'
-    df.to_csv(dirpath + savefileName + fileFormat , encoding='utf-8-sig')
-
-#csv 파일 저장
-#df: 저장할 dataframe dirpath : 저장할 위치 fileName : 저장할 파일이름
-def save_file(df, dirpath, savefileName) :
-    fileFormat = '.csv'
-    df.to_csv(dirpath + savefileName + fileFormat , encoding='utf-8-sig')
 
 #테슬라 주식 파일 읽어오기
 #dirpath : 테슬라 파일 주식 위치
@@ -64,3 +45,22 @@ def daily_stock_merge_csv(dirpath,savepath,fileName):
             merged_df = merged_df._append(df)
     #동일한 폴더에 병합한 csv 파일 저장
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
+    
+#불려온 cvs 파일을 dataframe으로 리턴   
+#dirpath : cvs파일가 있는 위치  fileName : 불려올 파일 이름
+def call_csv(dirpath, fileName):
+    merged_file = dirpath + fileName + '.csv'
+    df = pd.read_csv(merged_file)
+    return df
+
+#csv 파일 저장
+#df: 저장할 dataframe dirpath : 저장할 위치 fileName : 저장할 파일이름
+def save_file(df, dirpath, savefileName) :
+    fileFormat = '.csv'
+    df.to_csv(dirpath + savefileName + fileFormat , encoding='utf-8-sig')
+
+#csv 파일 저장
+#df: 저장할 dataframe dirpath : 저장할 위치 fileName : 저장할 파일이름
+def save_file(df, dirpath, savefileName) :
+    fileFormat = '.csv'
+    df.to_csv(dirpath + savefileName + fileFormat , encoding='utf-8-sig')

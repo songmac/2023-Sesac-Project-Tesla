@@ -4,7 +4,7 @@ import csvfile, cleaningData
 #csv 파일 병합
 filepath = './yumi/data/'
 fileName = '23_merge_news_data'
-#merge_monthly_csv(filepath,fileName)
+csvfile.merge_csv(filepath,fileName)
 
 #파일 불려오기
 df = csvfile.call_csv(filepath, fileName)
