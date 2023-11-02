@@ -5,7 +5,7 @@ import csvfile, cleaningData
 filepath = './yumi/data/'
 savepath = './yumi/data/merge/'
 fileName = 'merge_twit_data'
-csvfile.twit_merge_csv(filepath,savepath,fileName)
+#csvfile.twit_merge_csv(filepath,savepath,fileName)
 
 #파일 불려오기 
 df = csvfile.read_csv(savepath, fileName)
