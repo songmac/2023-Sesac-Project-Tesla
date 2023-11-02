@@ -42,6 +42,6 @@ df = df.loc[df['content_data'].str.len() > 1]
 print(f'길이가 1자 이하인 기사 제외 후 : ', df.shape)
 
 #전처리 된 파일 저장
-prepro_fileName = 'twitPreprosessing'
-savepath = './twitter_data/yearly_twitter_data/'
+prepro_fileName = 'twit_Preprosessing'
+savepath = './merge/data/'
 csvfile.save_file(df[['날짜','content_data']], savepath, prepro_fileName)

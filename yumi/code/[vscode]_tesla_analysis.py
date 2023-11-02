@@ -1,8 +1,6 @@
 from gensim.corpora.dictionary import Dictionary
 from gensim.models import LdaModel, TfidfModel
-#from gensim.models import ldamulticore
 from gensim.models import LdaMulticore
-import multiprocessing
 import pandas as pd
 import numpy as np
 import csvfile, modeling
@@ -15,12 +13,18 @@ print("---------------------테슬라 주식 데이터 Dataframe ---------------
 # teslaFilePath = './merge/data/'
 # teslaFileName = 'merge_stock_data'
 
-stockFilePath = './stock_data/'
-stockFileName = 'TSLA_DATA_2023_daily'
+#테슬라 주식 병합 (2020 ~ 20203.09)
+stockfilepath = './stock_data/'
+stockSaveFilepath = './merge/data/'
+stockFileName = 'merge_stock_data'
+#csvfile.daily_stock_merge_csv(stockfilepath, stockSaveFilepath, stockFileName)
+
+stockFilePath = './merge/data/'
+stockFileName = 'merge_stock_data'
 
 #테슬라 주식 dataFrame
 stocks_df = pd.DataFrame()
-stocks_df = csvfile.call_csv(stockFilePath, stockFileName)
+stocks_df = csvfile.read_csv(stockFilePath, stockFileName)
 
 #datetime으로 타입 변환
 stocks_df['날짜'] = pd.to_datetime(stocks_df['날짜'])
@@ -40,7 +44,7 @@ newsFileName = 'cleanWords'
 
 #테슬라 뉴스 dataFrame
 words_df = pd.DataFrame()
-words_df = csvfile.call_csv(newsFilePath, newsFileName)
+words_df = csvfile.read_csv(newsFilePath, newsFileName)
 
 #주식 데이터와 열 이름 통일
 words_df = words_df.rename(columns={'date' : '날짜'})

@@ -48,6 +48,10 @@ def clean_byline(text):
     result = pattern_bracket.sub(' ', result).strip()
     return result
 
+#한글 불용화 처리
+def remove_korean_stopwords(nouns_list):
+    return [word for word in nouns_list if word not in stop_words]
+
 #트위터 이모티콘 제거
 def remove_emoji(text):
     # 이모티콘 패턴 정의

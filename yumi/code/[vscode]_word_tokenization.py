@@ -25,12 +25,12 @@ def word_counter(wordArr):
 print("---------------------Tokenization------------------------")
 
 #전처리된 파일 읽어 오기 
-filepath = './yumi/data/'
+filepath = './merge/data/'
 prepro_fileName = 'telsa_preprosessing'
-words_df = csvfile.call_csv(filepath, prepro_fileName)
+words_df = csvfile.read_csv(filepath, prepro_fileName)
 #print(f'전처리한 날짜, 본문 shape : ', df.shape)
 
-words_df.drop('Unnamed: 0', axis=1, inplace = True)
+#words_df.drop('Unnamed: 0', axis=1, inplace = True)
 print('word_df.shape : {}, words_df.shape : {} '.format(words_df.shape, words_df))
 
 #공백으로 본문 내용 split
@@ -79,5 +79,5 @@ execution_time = end_time - start_time
 print(f"실행 시간: {execution_time} 초")
 
 #불용어 제거한 파일 저장
-clean_fileName = 'cleanWords'
+clean_fileName = 'tesla_news_cleaninngWords'
 csvfile.save_file(words_df, filepath, clean_fileName)

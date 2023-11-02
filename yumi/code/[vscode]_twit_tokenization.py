@@ -17,8 +17,8 @@ def word_counter(wordArr):
 print("---------------------Tokenization------------------------")
 
 #전처리된 파일 읽어 오기 
-filepath = './twitter_data/yearly_twitter_data/'
-prepro_fileName = 'twitPreprosessing'
+filepath = './merge/data/'
+prepro_fileName = 'twit_Preprosessing'
 words_df = csvfile.read_csv(filepath, prepro_fileName)
 print(f'전처리한 날짜, 본문 shape : ', words_df.shape)
 
@@ -56,5 +56,5 @@ print(words_df[:20])
 #   most_common_tag += token
 # print(Counter(most_common_tag).most_common(30))
 
-clean_fileName = 'cleanTwitWords'
+clean_fileName = 'twit_cleaninngWords'
 csvfile.save_file(words_df[['날짜','nouns']], filepath, clean_fileName)
