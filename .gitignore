@@ -13,3 +13,4 @@ yumi/data/
 yumi/etc/
 .vscode/
 .git/
+__pycache__
