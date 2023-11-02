@@ -99,7 +99,7 @@ print("---------------------LDA 모델링------------------------")
 #딕셔너리 생성 : 다시하기 
 dic = Dictionary()
 #clean_words = words_df['nouns_content']
-clean_words = words_df['nouns_content'].apply(lambda x: x.split())
+clean_words = words_df['nouns_content'].apply(lambda x: str(x).split())
 id2word = Dictionary(clean_words)
 #print(id2word)
 
@@ -124,7 +124,7 @@ if __name__ == '__main__':
                     num_topics=n,
                     random_state=100,
                     passes=15,
-                    workers=10)
+                    workers=8)
 
   for t in lda.print_topics():
     print(t[0],":",t[1])
