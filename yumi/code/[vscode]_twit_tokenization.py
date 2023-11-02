@@ -17,7 +17,7 @@ def word_counter(wordArr):
 print("---------------------Tokenization------------------------")
 
 #전처리된 파일 읽어 오기 
-filepath = './merge/data/'
+filepath = './yumi/data/merge/'
 prepro_fileName = 'twit_Preprosessing'
 words_df = csvfile.read_csv(filepath, prepro_fileName)
 print(f'전처리한 날짜, 본문 shape : ', words_df.shape)

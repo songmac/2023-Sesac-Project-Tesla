@@ -2,8 +2,8 @@ import pandas as pd
 import csvfile, cleaningData
 
 #csv 파일 병합
-filepath = './twitter_data/yearly_twitter_data/'
-savepath = './merge/data/'
+filepath = './yumi/data/'
+savepath = './yumi/data/merge/'
 fileName = 'merge_twit_data'
 csvfile.twit_merge_csv(filepath,savepath,fileName)
 
@@ -43,5 +43,5 @@ print(f'길이가 1자 이하인 기사 제외 후 : ', df.shape)
 
 #전처리 된 파일 저장
 prepro_fileName = 'twit_Preprosessing'
-savepath = './merge/data/'
+savepath = './yumi/data/merge/'
 csvfile.save_file(df[['날짜','content_data']], savepath, prepro_fileName)
