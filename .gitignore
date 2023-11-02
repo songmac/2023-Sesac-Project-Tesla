@@ -9,4 +9,5 @@
 #folder
 #파이썬은 인터프리터 언어라 바이트 코드를 컴파일하고 
 #__pycache__에 폴더에 저장
-yumi/data/*
+yumi/data/
+yumi/etc/
