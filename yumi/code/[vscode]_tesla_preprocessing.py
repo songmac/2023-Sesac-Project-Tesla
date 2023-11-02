@@ -2,7 +2,7 @@ import pandas as pd
 import csvfile, cleaningData
 
 #csv 파일 병합
-stockfilepath = './merge/data/'
+stockfilepath = './yumi/data/merge/'
 stockfileName = 'merge_news_data'
 #csvfile.merge_csv(stockfilepath,stockfileName)
 
@@ -43,7 +43,7 @@ df = df.loc[df['content_data'].str.len() > 140]
 print(f'길이가 140자 이하인 기사 제외 후 : ', df.shape)
 
 #전처리 된 파일 저장
-stockSavefilepath = './merge/data/'
+stockSavefilepath = './yumi/data/merge/'
 stockSavefileName = 'telsa_preprosessing'
 csvfile.save_file(df[['날짜','content_data']], stockSavefilepath, stockSavefileName)
 

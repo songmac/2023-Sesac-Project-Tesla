@@ -10,27 +10,23 @@ print("---------------------테슬라 주식 데이터 Dataframe ---------------
 
 # 테슬라 주식 데이터 Dataframe
 # 전체 날짜
-# teslaFilePath = './merge/data/'
-# teslaFileName = 'merge_stock_data'
-
 #테슬라 주식 병합 (2020 ~ 20203.09)
-stockfilepath = './stock_data/'
-stockSaveFilepath = './merge/data/'
+stockfilepath = './yumi/data/'
+stockSaveFilepath = './yumi/data/merge/'
 stockFileName = 'merge_stock_data'
-#csvfile.daily_stock_merge_csv(stockfilepath, stockSaveFilepath, stockFileName)
+#csvfile.stock_merge_csv(stockfilepath, stockSaveFilepath, stockFileName)
 
-stockFilePath = './merge/data/'
-stockFileName = 'merge_stock_data'
+mergeFilePath = './yumi/data/merge/'
 
 #테슬라 주식 dataFrame
 stocks_df = pd.DataFrame()
-stocks_df = csvfile.read_csv(stockFilePath, stockFileName)
+stocks_df = csvfile.read_csv(mergeFilePath, stockFileName)
 
 #datetime으로 타입 변환
 stocks_df['날짜'] = pd.to_datetime(stocks_df['날짜'])
 #print('주식 데이터 shape : ', stocks_df.shape)
 
-#거래량 M/B를 제외한 숫자로만 표기습을 진행함
+#거래량 M를 제외한 숫자로만 표기습을 진행함
 stocks_df['거래량'] = pd.to_numeric(stocks_df['거래량'].str.replace('M', ''))
 
 #날짜와 거래량 추출 : stock_df
@@ -39,8 +35,8 @@ print(stock_df)
 
 print("---------------------테슬라 기사 데이터 Dataframe ------------------------")
 
-newsFilePath = './yumi/data/'
-newsFileName = 'cleanWords'
+newsFilePath = './yumi/data/merge/'
+newsFileName = 'tesla_news_cleaninngWords'
 
 #테슬라 뉴스 dataFrame
 words_df = pd.DataFrame()
