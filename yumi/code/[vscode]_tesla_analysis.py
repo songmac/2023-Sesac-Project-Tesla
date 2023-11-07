@@ -1,8 +1,6 @@
 from gensim.corpora.dictionary import Dictionary
-from gensim.models import LdaModel, TfidfModel
-from gensim.models import LdaMulticore
+from gensim.models import TfidfModel, LdaMulticore
 import pandas as pd
-import numpy as np
 import csvfile, modeling
 import time
 
@@ -31,7 +29,7 @@ stocks_df['거래량'] = pd.to_numeric(stocks_df['거래량'].str.replace('M', '
 
 #날짜와 거래량 추출 : stock_df
 stock_df = stocks_df[['날짜','거래량']]
-print(stock_df)
+#print(stock_df[:10])
 
 print("---------------------테슬라 기사 데이터 Dataframe ------------------------")
 
@@ -74,6 +72,7 @@ news_daily_cnt = data_df['기사갯수']
 #news_cnt = data_df['기사갯수'].sum()
 #print('2023년 기사 개수 :', news_cnt)
 
+
 print('날짜별 기사개수 : {}, 날짜별 주식 거래양 수 : {}'.format(news_daily_cnt, stock_daily_volume))
 
 print("---------------------라쏘 회귀 ------------------------")
@@ -96,10 +95,17 @@ print(modeling.LASSO_KFold(X, y, alpha, n_splits))
 print(modeling.optimize_alpha(X, y, alphas, n_splits))
 
 print("---------------------LDA 모델링------------------------")
+
+def save_topics_csv(lda, num_topics, save_result_to: str = './yumi/data/lda.csv'):
+  # LDA 모델의 토픽 리스트를 csv파일로 저장
+  topics = pd.Series(lda.print_topics(num_topics=num_topics, num_words=10))
+  topics.to_csv(save_result_to, mode='w', encoding='utf-8', header=['list'], index_label='topic')
+
+
 #딕셔너리 생성 : 다시하기 
 dic = Dictionary()
 #clean_words = words_df['nouns_content']
-clean_words = words_df['nouns_content'].apply(lambda x: x.split())
+clean_words = words_df['nouns_content'].apply(lambda x: str(x).split())
 id2word = Dictionary(clean_words)
 #print(id2word)
 
@@ -124,7 +130,7 @@ if __name__ == '__main__':
                     num_topics=n,
                     random_state=100,
                     passes=15,
-                    workers=10)
+                    workers=6)
 
   for t in lda.print_topics():
     print(t[0],":",t[1])
@@ -141,6 +147,9 @@ if __name__ == '__main__':
           top_words.add(word)
   len(top_words) / (lda.num_topics * topn)
   
+  #csv 파일 저장
+  save_topics_csv(lda, n)
   end_time = time.time()
+
   execution_time = end_time - start_time
   print(f"실행 시간: {execution_time} 초")
