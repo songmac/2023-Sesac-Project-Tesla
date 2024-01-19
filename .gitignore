@@ -11,6 +11,7 @@
 #__pycache__에 폴더에 저장
 yumi/data/
 yumi/etc/
+selena/backup/
 .vscode/
 .git/
 __pycache__
