@@ -25,7 +25,7 @@ def word_counter(wordArr):
 print("---------------------Tokenization------------------------")
 
 #전처리된 파일 읽어 오기 
-filepath = './merge/data/'
+filepath = './yumi/data/merge/'
 prepro_fileName = 'telsa_preprosessing'
 words_df = csvfile.read_csv(filepath, prepro_fileName)
 #print(f'전처리한 날짜, 본문 shape : ', df.shape)
@@ -57,7 +57,7 @@ def pos_nouns_tag(df) :
   return df.apply(lambda x: mecab.nouns(x))
 
 words_df['nouns_content'] = pos_nouns_tag(words_df['content_data'])
-print("명사 pos taging : ", words_df['nouns_content'][:10])
+#print("명사 pos taging : ", words_df['nouns_content'][:10])
 
 #word_df를 리스트로 변환
 words_list = words_df['nouns_content'].tolist()
@@ -65,6 +65,7 @@ words_list = words_df['nouns_content'].tolist()
 #불용어처리
 words_df['nouns_content'] = words_df['nouns_content'].map(cleaningData.remove_korean_stopwords)
 clean_words = words_df['nouns_content']
+print("명사 pos taging : ", clean_words['nouns_content'][:10])
 #print('불용어 제거 후 : ', clean_words[:20])
 
 end_time = time.time()

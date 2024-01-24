@@ -5,8 +5,7 @@ import os
 
 
 # <테슬라 뉴스 파일 병합하기>
-def merge_csv(dirpath):
-    
+def merge_csv(dirpath):    
     file_list = os.listdir(dirpath)
     file_list_csv = [file for file in file_list if file.endswith('.csv')]
 
@@ -56,7 +55,6 @@ def stock_merge_csv(dirpath, savepath, fileName):
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
 
 
-
 # <twit 파일 병합하기>
 # dirpath : 테슬라 파일 주식 위치
 # savepath : 저장할 파일 위치
@@ -77,6 +75,3 @@ def twit_merge_csv(dirpath,savepath,fileName):
             merged_df = merged_df._append(df)
     #동일한 폴더에 병합한 csv 파일 저장
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
-    
-
-

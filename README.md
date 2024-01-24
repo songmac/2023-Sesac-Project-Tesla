@@ -29,3 +29,9 @@
 ## 일정 및 역할 분담
 
 ![image](https://github.com/maximin90/Team_SeSAC/assets/113491089/6603e299-03a0-4765-8e97-73b8f38ef10b)
+
+
+## 프로젝트 디벨롭 순서 (기준 : 2024.01.19)
+  1. [진행중] 네이버뉴스시각화 : FPE(peakday)에서 나온 키워드의 FVE 
+  2. 트위터시각화 : LDA -> FPE -> FVE 
+  3. csv데이터를 SQL을 사용하여 불러오는 코드 추가

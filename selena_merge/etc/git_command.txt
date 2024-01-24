@@ -1,0 +1,6 @@
+* mastser git pull
+git pull origin master
+
+* temp save commit
+git stash
+git stash pop
