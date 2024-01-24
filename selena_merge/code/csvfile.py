@@ -1,11 +1,11 @@
+# <cvs file처리하는 모듈>
+# 설명 : 2020 ~ 2023년으로 시작하는 csv 파일 전부 read, merge, save 하는 모듈
 import pandas as pd
 import os
 
-#cvs file처리하는 모듈
 
-#2020 ~ 2023년으로 시작하는 csv 파일 전부 merge
-def merge_csv(dirpath,fileName):
-    
+# <테슬라 뉴스 파일 병합하기>
+def merge_csv(dirpath):    
     file_list = os.listdir(dirpath)
     file_list_csv = [file for file in file_list if file.endswith('.csv')]
 
@@ -19,13 +19,23 @@ def merge_csv(dirpath,fileName):
             print(file)
             df = pd.read_csv(dirpath + file, dtype='object')
             merged_df = merged_df._append(df)
-            
-    #동일한 폴더에 병합한 csv 파일 저장
-    merged_df.to_csv(dirpath + fileName + ".csv", index=False, encoding='utf-8-sig')
 
-#테슬라 주식 파일 읽어오기
-#dirpath : 테슬라 파일 주식 위치
-#savepath : 저장할 파일 위치
+#불려온 cvs 파일을 dataframe으로 리턴   
+def read_csv(dirpath):
+    merged_file = dirpath + '.csv'
+    df = pd.read_csv(merged_file)
+    return df
+
+# csv 파일 저장
+def save_csv(df, savepath, fileName) : # save_file -> save_csv
+    fileFormat = '.csv'
+    df.to_csv(savepath + fileName + fileFormat ,index=False, encoding='utf-8-sig')
+
+
+
+# <테슬라 주식 파일 병합하기>
+# dirpath : 테슬라 파일 주식 위치
+# savepath : 저장할 파일 위치
 # fileName : 저장할 파일 이름
 def stock_merge_csv(dirpath, savepath, fileName):
     
@@ -44,7 +54,8 @@ def stock_merge_csv(dirpath, savepath, fileName):
     #동일한 폴더에 병합한 csv 파일 저장
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
 
-#twit 파일 읽어오기
+
+# <twit 파일 병합하기>
 # dirpath : 테슬라 파일 주식 위치
 # savepath : 저장할 파일 위치
 # fileName : 저장할 파일 이름
@@ -64,14 +75,3 @@ def twit_merge_csv(dirpath,savepath,fileName):
             merged_df = merged_df._append(df)
     #동일한 폴더에 병합한 csv 파일 저장
     merged_df.to_csv(savepath + fileName + ".csv", index=False, encoding='utf-8-sig')
-    
-#불려온 cvs 파일을 dataframe으로 리턴   
-def read_csv(dirpath, fileName):
-    merged_file = dirpath + fileName + '.csv'
-    df = pd.read_csv(merged_file)
-    return df
-
-#csv 파일 저장
-def save_file(df, dirpath, fileName) :
-    fileFormat = '.csv'
-    df.to_csv(dirpath + fileName + fileFormat ,index=False, encoding='utf-8-sig')
