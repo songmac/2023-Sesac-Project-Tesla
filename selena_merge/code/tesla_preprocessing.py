@@ -3,7 +3,7 @@
 # (계속) -> 불용어처리 -> 주식 브리핑(140자 내외) 기사 제외
 
 import pandas as pd
-import selena_merge.module.csvfile as csvfile, selena_merge.module.cleaningData as cleaningData
+import csvfile as csvfile, cleaningData as cleaningData
 
 
 #csv 파일 병합
