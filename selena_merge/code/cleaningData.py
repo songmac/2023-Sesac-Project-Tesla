@@ -2,6 +2,8 @@ import re, unicodedata
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+# nltk.download('stopwords')
+
 
 stop_words = ['월', '위', '일', '억', '년', '원', '지난해', '를', '것', '등','차','올해','챗','위', '가', '조', '의', '및','약','수','주','기자',
               '만','이','중','말','마하','미','거','게','고','분','때문','때','더','점','씨','전','개','디','은','론','닉','키','김','책','그',
