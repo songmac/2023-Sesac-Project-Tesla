@@ -5,20 +5,20 @@ import os
 
 
 # <테슬라 뉴스 파일 병합하기>
-def merge_csv(dirpath):    
+def merge_csv(dirpath):
     file_list = os.listdir(dirpath)
     file_list_csv = [file for file in file_list if file.endswith('.csv')]
 
     merged_df = pd.DataFrame()
-    
+
     for file in file_list_csv:
-        # 파일명에서 연도 정보 추출 (예: "2022_01_news_data.csv")
-        year = file.split('_')[0]
-        #2020 ~ 2023년도로 시작하는 파일명만 merge
-        if year in ['2023','2022','2021','2020'] :
-            print(file)
-            df = pd.read_csv(dirpath + file, dtype='object')
-            merged_df = merged_df._append(df)
+        file_path = os.path.join(dirpath, file)
+        df = pd.read_csv(file_path, dtype='object')
+        merged_df = pd.concat([merged_df, df])
+
+    # 병합된 데이터 프레임 반환
+    return merged_df
+
 
 #불려온 cvs 파일을 dataframe으로 리턴   
 def read_csv(dirpath):
