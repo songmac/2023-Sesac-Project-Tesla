@@ -49,7 +49,7 @@
 ## 텍스트 마이닝 수행 절차
 ### 1-1. 데이터 수집
 - Description : 웹 크롤링을 이용하여 필요한 데이터 선별하고 수집하여 저장 
-- Method : #request #BeautifulSoup #pandas #tqdm
+- Method : #re #request #BeautifulSoup #pandas
 
 ### 1-2. 데이터 정제
 - Description : 불필요한 부분 제거 
@@ -57,7 +57,7 @@
 
 ### 2. 텍스트 전처리
 - Description : 토큰화, 품사부착, 개체명 인식, 원형복원, 불용어 처리 
-- Method : #konlpy #Okt(or Mecab) #re #corpora 
+- Method : #nltk #mecab #re 
 
 ### 3. 텍스트 분석
 - Description : 주제어 찾기(토픽모델링*) 
@@ -70,6 +70,6 @@
 - Method : #ldaModel #TfidModel #k-fold
 
 ### 4. 결과 검증 및 시각화 
-- Description : LASSO 회귀 분석을 이용한 예상키워드와의 FPE(설명된 피크 비율), FVE(설명된 볼륨 비율) 또한 연관도 분석(워드 클라우드, Sentiment Pie Chart, 산점도 etc.) 
+- Description : LASSO 회귀 분석을 이용한 예상키워드와의 FPE(설명된 피크 비율), FVE(설명된 볼륨 비율). 추가로 연관도 분석 가능(워드 클라우드, Sentiment Pie Chart, 산점도 etc.) 
 - Method : #LASSO #pyLDAvis
 
